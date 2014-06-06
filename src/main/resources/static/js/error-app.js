@@ -21,6 +21,27 @@ app.config(function ($provide) {
         };
     });
 });
+
+app.directive('ccShell', function () {
+    return {
+        restrict: 'E',
+        template: '<div><div ng-if="rootData.err.length > 0" class="alert-danger">{{rootData.err}} <a ng-click="rootData.err = \'\'">Dismiss</a></div><div ng-transclude></div></div>',
+        transclude: true,
+        controller: function ($rootScope) {
+            $rootScope.rootData = {};
+            $rootScope.$on('ccAppError', function (event, data) {
+                $rootScope.rootData.err = data.msg;
+            })
+        }
+    }
+});
+
+app.controller('MainController', function mainController($scope,$http) {
+    $scope.name = 'Bob';
+//    some.err();
+
+});
+
 app.service('HttpLoggingService', function ($httpBackend, $window) {
     var buildLogInfo = function (msg) {
         msg = msg || '';
