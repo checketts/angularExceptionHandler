@@ -41,13 +41,13 @@ app.directive('ccShell', function () {
 });
 
 app.controller('MainController', function ($scope,$http) {
-    $scope.name = 'Bob';
+    $scope.someName = 'Bob';
 //    some.err();
 
     $scope.hackSomething = function(){
         $http({method:'GET',url:'/boom'})
     }
-
+    $scope.errorText = {required:'Required',minlength:'Too Short', maxlength:'Too Long'};
     $scope.causeError = function causeBoom(){
         fakeMethod();
     }
@@ -56,7 +56,7 @@ app.controller('MainController', function ($scope,$http) {
 
 
 
-//Http Intercpetor to check auth failures for xhr requests
+//Http Interceptor to check auth failures for xhr requests
 app.config(['$httpProvider', function ($httpProvider) {
     $httpProvider.interceptors.push('ccHttpInterceptor');
 }]);
