@@ -1,0 +1,9 @@
+<div ng-form name="formGroupForm" class="form-group"
+     ng-class="{'has-error':formGroupForm.$invalid && (formGroupForm.$dirty || showValidation)}">
+    <label ng-if="labelText" class="control-label">{{labelText}}</label>
+    <div ng-transclude></div>
+    <p class="error-text small text-danger"
+       ng-if="!errorTexts && formGroupForm.$invalid && (formGroupForm.$dirty || showValidation)">{{errorText}}</p>
+    <p class="error-text small text-danger" ng-repeat="(errType,errMsg) in errorTexts"
+       ng-if="formGroupForm.$invalid && (formGroupForm.$dirty || showValidation) && formGroupForm.$error[errType]">{{errMsg}}</p>
+</div>

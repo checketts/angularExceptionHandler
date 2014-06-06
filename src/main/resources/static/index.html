@@ -3,7 +3,10 @@
     <head>
         <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
         <script src="libs/angular.js"></script>
+        <script src="libs/lodash.js"></script>
         <script src="js/error-app.js"></script>
+        <script src="js/ccFormGroup.js"></script>
+        <script src="js/FormGroupService.js"></script>
     </head>
 
     <body class="container">
@@ -11,6 +14,16 @@
             <div class="row" ng-controller="MainController">
                 Hey {{name}}.  <a class="btn btn-warning" ng-click="hackSomething()">Hack</a> <a class="btn btn-danger" ng-click="causeError()">Error</a>
             </div>
+
+            <ng-form name="name" class="form-group" ng-class="{'has-error':name.$invalid && (name.$dirty)}">
+                <label class="control-label" for="input">Name</label>
+                <div><input id="input" required name="input" ng-model="someName" /></div>
+                <div class="error-text small text-danger" ng-show="name.input.$error.required && name.input.$dirty" >Required</div>
+            </ng-form>
+
+            <cc-form-group name="test" label-text="'Name'"  error-text="'Required'">
+                <input required name="input" ng-model="otherName" />
+            </cc-form-group>
         </cc-shell>
 
 
