@@ -25,7 +25,11 @@ app.config(function ($provide) {
 app.directive('ccShell', function () {
     return {
         restrict: 'E',
-        template: '<div><div ng-if="rootData.err.length > 0" class="alert-danger">{{rootData.err}} <a ng-click="rootData.err = \'\'">Dismiss</a></div><div ng-transclude></div></div>',
+        template: '<div>\n' +
+            '    <div ng-if="rootData.err.length > 0" class="row alert-danger"><div class="col-lg-12">{{rootData.err}} <a\n' +
+            '           class="btn btn-default" ng-click="rootData.err = \'\'">Dismiss</a></div></div>\n' +
+            '    <div ng-transclude></div>\n' +
+            '</div>',
         transclude: true,
         controller: function ($rootScope) {
             $rootScope.rootData = {};
@@ -36,12 +40,16 @@ app.directive('ccShell', function () {
     }
 });
 
-app.controller('MainController', function mainController($scope,$http) {
+app.controller('MainController', function ($scope,$http) {
     $scope.name = 'Bob';
 //    some.err();
 
     $scope.hackSomething = function(){
         $http({method:'GET',url:'/boom'})
+    }
+
+    $scope.causeError = function causeBoom(){
+        fakeMethod();
     }
 });
 

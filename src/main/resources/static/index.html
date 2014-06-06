@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html ng-app="ErrorApp">
     <head>
-        <link href="css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
         <script src="libs/angular.js"></script>
         <script src="js/error-app.js"></script>
     </head>
 
-    <body >
+    <body class="container">
         <cc-shell>
-            <div ng-controller="MainController">
-                Hey {{name}}.  <a ng-click="hackSomething()">Hack</a>
+            <div class="row" ng-controller="MainController">
+                Hey {{name}}.  <a class="btn btn-warning" ng-click="hackSomething()">Hack</a> <a class="btn btn-danger" ng-click="causeError()">Error</a>
             </div>
         </cc-shell>
 
